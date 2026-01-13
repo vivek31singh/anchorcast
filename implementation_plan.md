@@ -44,21 +44,21 @@
 2. [x] Build `Button` component with variants (primary, ghost, danger) and sizes.
 3. [x] Build `Toggle` component for view switching.
 4. [x] Build `Tooltip` using pure CSS groups.
-5. [ ] Build `StatCard` and `QuickAction` components for the Bento grid.
+5. [x] Build `StatCard` and `QuickAction` components for the Bento grid.
 
 **Phase 4: Layout Components**
-1. [ ] Implement `Nav` for desktop sidebar/topbar.
-2. [ ] Implement `MobileDrawer` for mobile navigation.
-3. [ ] Implement `UserDropdown` for user profile display.
-4. [ ] Assemble into `app/layout.tsx`.
+1. [x] Implement `Nav` for desktop sidebar/topbar.
+2. [x] Implement `MobileDrawer` for mobile navigation.
+3. [x] Implement `UserDropdown` for user profile display.
+4. [x] Assemble into `app/layout.tsx` via `PageShell`.
 
 **Phase 5: Page Implementation (Dashboard)**
-1. [ ] Implement `app/page.tsx` with the 12-column Bento grid.
-2. [ ] Integrate StatCards, QuickActions, Calendar widget, and Recent Logs table.
-3. [ ] Ensure responsive collapsing to single column on mobile.
+1. [x] Implement `app/page.tsx` with the 12-column Bento grid.
+2. [x] Integrate StatCards, QuickActions, Calendar widget, and Recent Logs table.
+3. [x] Ensure responsive collapsing to single column on mobile.
 
 **Phase 6: Feature Pages Implementation**
-1. [ ] **Boats (`/boats`)**: Implement Grid/Table toggle, filtering logic, and BoatCard/TableRow components.
+1. [x] **Boats (`/boats`)**: Implement Grid/Table toggle, filtering logic, and BoatCard/TableRow components.
 2. [ ] **Posts (`/posts`)**: Implement tab switching (Published/Failed), PostPreview cards, and detail view `[id]/page.tsx`.
 3. [ ] **Templates (`/templates`)**: Build the TemplateEditor with textarea helpers and HashtagChips logic.
 4. [ ] **Social (`/social`)**: Create the connection status card with "Reconnect" simulation.
