@@ -29,43 +29,43 @@
 
 ## Implementation Steps
 **Phase 1: Project Initialization & Configuration**
-1. Initialize Next.js 14 project with TypeScript and Tailwind CSS.
-2. Install dependencies: `@heroicons/react`, `clsx`, `tailwind-merge`.
-3. Configure `tailwind.config.ts` for custom colors and animations.
-4. Set up global CSS (`glass.css`) with required utility classes.
-5. Configure Inter font in the root layout.
+1. [x] Initialize Next.js 14 project with TypeScript and Tailwind CSS.
+2. [x] Install dependencies: `@heroicons/react`, `clsx`, `tailwind-merge`.
+3. [x] Configure `tailwind.config.ts` for custom colors and animations.
+4. [x] Set up global CSS (`glass.css`) with required utility classes.
+5. [x] Configure Inter font in the root layout.
 
 **Phase 2: Data Layer & Typing**
-1. Create `app/lib/types.ts` defining interfaces for User, Boat, Post, Template, and Social stats.
-2. Create `app/lib/dummy.ts` populating these interfaces with the static JSON data defined in requirements.
+1. [x] Create `app/lib/types.ts` defining interfaces for User, Boat, Post, Template, and Social stats.
+2. [x] Create `app/lib/dummy.ts` populating these interfaces with the static JSON data defined in requirements.
 
 **Phase 3: Core UI Components**
-1. Build `GlassPane` wrapper component using the custom glass utilities.
-2. Build `Button` component with variants (primary, ghost, danger) and sizes.
-3. Build `Toggle` component for view switching.
-4. Build `Tooltip` using pure CSS groups.
-5. Build `StatCard` and `QuickAction` components for the Bento grid.
+1. [x] Build `GlassPane` wrapper component using the custom glass utilities.
+2. [x] Build `Button` component with variants (primary, ghost, danger) and sizes.
+3. [x] Build `Toggle` component for view switching.
+4. [x] Build `Tooltip` using pure CSS groups.
+5. [ ] Build `StatCard` and `QuickAction` components for the Bento grid.
 
 **Phase 4: Layout Components**
-1. Implement `Nav` for desktop sidebar/topbar.
-2. Implement `MobileDrawer` for mobile navigation.
-3. Implement `UserDropdown` for user profile display.
-4. Assemble into `app/layout.tsx`.
+1. [ ] Implement `Nav` for desktop sidebar/topbar.
+2. [ ] Implement `MobileDrawer` for mobile navigation.
+3. [ ] Implement `UserDropdown` for user profile display.
+4. [ ] Assemble into `app/layout.tsx`.
 
 **Phase 5: Page Implementation (Dashboard)**
-1. Implement `app/page.tsx` with the 12-column Bento grid.
-2. Integrate StatCards, QuickActions, Calendar widget, and Recent Logs table.
-3. Ensure responsive collapsing to single column on mobile.
+1. [ ] Implement `app/page.tsx` with the 12-column Bento grid.
+2. [ ] Integrate StatCards, QuickActions, Calendar widget, and Recent Logs table.
+3. [ ] Ensure responsive collapsing to single column on mobile.
 
 **Phase 6: Feature Pages Implementation**
-1. **Boats (`/boats`)**: Implement Grid/Table toggle, filtering logic, and BoatCard/TableRow components.
-2. **Posts (`/posts`)**: Implement tab switching (Published/Failed), PostPreview cards, and detail view `[id]/page.tsx`.
-3. **Templates (`/templates`)**: Build the TemplateEditor with textarea helpers and HashtagChips logic.
-4. **Social (`/social`)**: Create the connection status card with "Reconnect" simulation.
-5. **Settings (`/settings`)**: Build form validation visuals and the "Danger Zone" reset modal.
+1. [ ] **Boats (`/boats`)**: Implement Grid/Table toggle, filtering logic, and BoatCard/TableRow components.
+2. [ ] **Posts (`/posts`)**: Implement tab switching (Published/Failed), PostPreview cards, and detail view `[id]/page.tsx`.
+3. [ ] **Templates (`/templates`)**: Build the TemplateEditor with textarea helpers and HashtagChips logic.
+4. [ ] **Social (`/social`)**: Create the connection status card with "Reconnect" simulation.
+5. [ ] **Settings (`/settings`)**: Build form validation visuals and the "Danger Zone" reset modal.
 
 **Phase 7: Polish & Delivery**
-1. Add hover effects and micro-interactions (scale, shadows).
-2. Verify responsiveness (375px to 1920px+).
-3. Run TypeScript compilation and linter checks.
-4. Create README and documentation screenshots.
+1. [ ] Add hover effects and micro-interactions (scale, shadows).
+2. [ ] Verify responsiveness (375px to 1920px+).
+3. [ ] Run TypeScript compilation and linter checks.
+4. [ ] Create README and documentation screenshots.
