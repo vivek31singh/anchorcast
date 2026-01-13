@@ -1,86 +1,85 @@
 'use client';
 
 import { useState } from 'react';
+import { GlassPane } from '@/components/bento/GlassPane';
+import { PostPreview } from '@/components/posts/PostPreview';
 import { posts, boats } from '@/lib/dummy';
-import type { Post } from '@/lib/types';
-import GlassPane from '@/components/bento/GlassPane';
-import PostPreview from '@/components/posts/PostPreview';
+import { Post } from '@/lib/types';
 
 export default function PostsPage() {
   const [activeTab, setActiveTab] = useState<'published' | 'failed'>('published');
   const [retryingIds, setRetryingIds] = useState<Set<number>>(new Set());
 
-  const filteredPosts = posts.filter((post) => post.status === activeTab);
-
   const handleRetry = (postId: number) => {
     setRetryingIds((prev) => new Set(prev).add(postId));
 
-    // Simulate network delay for retry action
+    // Simulate API call with timeout
     setTimeout(() => {
       setRetryingIds((prev) => {
-        const updated = new Set(prev);
-        updated.delete(postId);
-        return updated;
+        const next = new Set(prev);
+        next.delete(postId);
+        return next;
       });
     }, 2000);
   };
 
+  const filteredPosts = posts.filter((post) => post.status === activeTab);
+
+  const getBoatTitle = (boatId: number): string => {
+    const boat = boats.find((b) => b.id === boatId);
+    return boat?.title || 'Unknown Boat';
+  };
+
   return (
     <div className="space-y-6">
+      {/* Page Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-white">Posts Management</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Posts</h1>
       </div>
 
-      <GlassPane className="p-6">
-        {/* Tab Group */}
-        <div className="flex space-x-4 border-b border-white/20 pb-4 mb-6">
-          <button
-            onClick={() => setActiveTab('published')}
-            className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-              activeTab === 'published'
-                ? 'bg-blue-500/30 text-white border border-blue-400/50'
-                : 'text-white/60 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            Published
-          </button>
-          <button
-            onClick={() => setActiveTab('failed')}
-            className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-              activeTab === 'failed'
-                ? 'bg-red-500/30 text-white border border-red-400/50'
-                : 'text-white/60 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            Failed
-          </button>
-        </div>
-
-        {/* Post List */}
-        <div className="space-y-4">
-          {filteredPosts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-white/60">No {activeTab} posts found.</p>
-            </div>
-          ) : (
-            filteredPosts.map((post) => {
-              const boat = boats.find((b) => b.id === post.boatId);
-              const boatTitle = boat?.title || 'Unknown Boat';
-              const isRetrying = retryingIds.has(post.id);
-
-              return (
-                <PostPreview
-                  key={post.id}
-                  post={post}
-                  boatTitle={boatTitle}
-                  isRetrying={isRetrying}
-                  onRetry={handleRetry}
-                />
-              );
-            })
-          )}
-        </div>
+      {/* Tab Navigation */}
+      <GlassPane className="p-2 flex space-x-2">
+        <button
+          onClick={() => setActiveTab('published')}
+          className={`flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 ${
+            activeTab === 'published'
+              ? 'bg-blue-500 text-white shadow-lg'
+              : 'text-gray-600 dark:text-gray-400 hover:bg-white/10'
+          }`}
+        >
+          Published
+        </button>
+        <button
+          onClick={() => setActiveTab('failed')}
+          className={`flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200 ${
+            activeTab === 'failed'
+              ? 'bg-red-500 text-white shadow-lg'
+              : 'text-gray-600 dark:text-gray-400 hover:bg-white/10'
+          }`}
+        >
+          Failed
+        </button>
       </GlassPane>
+
+      {/* Posts List */}
+      <div className="grid gap-4">
+        {filteredPosts.map((post) => (
+          <PostPreview
+            key={post.id}
+            post={post}
+            boatTitle={getBoatTitle(post.boatId)}
+            isRetrying={retryingIds.has(post.id)}
+            onRetry={() => handleRetry(post.id)}
+          />
+        ))}
+        {filteredPosts.length === 0 && (
+          <GlassPane className="p-12 text-center">
+            <p className="text-gray-500 dark:text-gray-400">
+              No {activeTab} posts found
+            </p>
+          </GlassPane>
+        )}
+      </div>
     </div>
   );
 }

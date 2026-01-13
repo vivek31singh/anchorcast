@@ -1,39 +1,34 @@
+'use client';
+
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
-import Button from '@/components/ui/Button';
-import type { Post } from '@/lib/types';
+import { Post } from '@/lib/types';
 
 interface PublishRetryProps {
   post: Post;
   isRetrying: boolean;
-  onRetry: (postId: number) => void;
+  onRetry: () => void;
 }
 
-export default function PublishRetry({ post, isRetrying, onRetry }: PublishRetryProps) {
-  const isFailed = post.status === 'failed';
-
-  if (!isFailed) {
-    return null;
-  }
-
+export const PublishRetry = ({ post, isRetrying, onRetry }: PublishRetryProps) => {
   return (
-    <div className="flex flex-col space-y-2">
-      {post.errorMsg && (
-        <p className="text-sm text-red-400 bg-red-500/10 px-3 py-2 rounded-lg">
-          Error: {post.errorMsg}
-        </p>
-      )}
-      <Button
-        variant="primary"
-        size="sm"
-        onClick={() => onRetry(post.id)}
+    <div className="flex items-center space-x-3">
+      <span className="text-sm text-gray-600 dark:text-gray-400">
+        {post.errorMsg || 'Failed to publish'}
+      </span>
+      <button
+        onClick={onRetry}
         disabled={isRetrying}
-        className="w-full sm:w-auto"
+        className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
+          isRetrying
+            ? 'bg-gray-400/30 text-gray-500 cursor-not-allowed'
+            : 'bg-blue-500/20 text-blue-600 hover:bg-blue-500/30 hover:scale-105 active:scale-95'
+        }`}
       >
-        <ArrowPathIcon
-          className={`w-4 h-4 ${isRetrying ? 'animate-spin' : ''}`}
-        />
-        {isRetrying ? 'Retrying...' : 'Retry Publish'}
-      </Button>
+        <ArrowPathIcon className={`w-4 h-4 ${isRetrying ? 'animate-spin' : ''}`} />
+        <span className="text-sm font-medium">
+          {isRetrying ? 'Retrying...' : 'Retry'}
+        </span>
+      </button>
     </div>
   );
-}
+};

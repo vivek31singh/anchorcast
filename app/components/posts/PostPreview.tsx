@@ -1,54 +1,55 @@
-import { ClockIcon, PhotoIcon } from '@heroicons/react/24/outline';
-import GlassPane from '@/components/bento/GlassPane';
-import PostStatusBadge from './PostStatusBadge';
-import PublishRetry from './PublishRetry';
-import type { Post } from '@/lib/types';
+'use client';
+
+import { FacebookIcon, InstagramIcon } from '@heroicons/react/24/outline';
+import { GlassPane } from '@/components/bento/GlassPane';
+import { PostStatusBadge } from './PostStatusBadge';
+import { PublishRetry } from './PublishRetry';
+import { Post } from '@/lib/types';
 
 interface PostPreviewProps {
   post: Post;
   boatTitle: string;
   isRetrying: boolean;
-  onRetry: (postId: number) => void;
+  onRetry: () => void;
 }
 
-export default function PostPreview({ post, boatTitle, isRetrying, onRetry }: PostPreviewProps) {
-  const platformName = post.platform === 'fb' ? 'Facebook' : 'Instagram';
-  const createdAt = new Date(post.createdAt).toLocaleString();
+export const PostPreview = ({ post, boatTitle, isRetrying, onRetry }: PostPreviewProps) => {
+  const platformIcon = post.platform === 'fb' ? FacebookIcon : InstagramIcon;
+  const PlatformIcon = platformIcon;
 
   return (
-    <GlassPane className="p-4 hover:bg-white/25 transition-all duration-300">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        {/* Left: Post Info */}
-        <div className="flex-1 space-y-3">
-          {/* Header: Platform and Status */}
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center space-x-2">
-              <PhotoIcon className="w-5 h-5 text-white/60" />
-              <span className="font-medium text-white">{platformName}</span>
-            </div>
-            <PostStatusBadge status={post.status} errorMsg={post.errorMsg} />
+    <GlassPane className="p-6 space-y-4">
+      {/* Header with Boat Title and Platform */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg">
+            <PlatformIcon className="w-5 h-5 text-blue-500" />
           </div>
-
-          {/* Boat Title */}
-          <h3 className="text-lg font-semibold text-white">{boatTitle}</h3>
-
-          {/* Timestamp */}
-          <div className="flex items-center space-x-2 text-sm text-white/60">
-            <ClockIcon className="w-4 h-4" />
-            <span>{createdAt}</span>
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{boatTitle}</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {post.platform === 'fb' ? 'Facebook' : 'Instagram'} • {new Date(post.createdAt).toLocaleDateString()}
+            </p>
           </div>
-
-          {/* Preview of payload text if available */}
-          {post.payload && typeof post.payload === 'object' && 'text' in post.payload && (
-            <p className="text-sm text-white/70 line-clamp-2">{String(post.payload.text)}</p>
-          )}
         </div>
+        <PostStatusBadge status={post.status} />
+      </div>
 
-        {/* Right: Actions */}
-        <div className="flex sm:flex-col justify-end">
+      {/* Post Content Preview */}
+      <div className="p-4 bg-white/10 rounded-lg border border-white/20">
+        <p className="text-gray-700 dark:text-gray-300 text-sm line-clamp-3">
+          {typeof post.payload === 'object' && 'message' in post.payload
+            ? (post.payload as any).message
+            : JSON.stringify(post.payload)}
+        </p>
+      </div>
+
+      {/* Footer with Retry Action for Failed Posts */}
+      {post.status === 'failed' && (
+        <div className="pt-2">
           <PublishRetry post={post} isRetrying={isRetrying} onRetry={onRetry} />
         </div>
-      </div>
+      )}
     </GlassPane>
   );
-}
+};
