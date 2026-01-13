@@ -1,0 +1,17 @@
+@layer utilities {
+  .glass {
+    @apply bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-lg;
+  }
+
+  .glass-hover {
+    @apply hover:bg-white/30 transition-all duration-300;
+  }
+
+  .glass-sm {
+    @apply bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-md;
+  }
+
+  .glass-lg {
+    @apply bg-white/25 backdrop-blur-lg border border-white/40 rounded-3xl shadow-xl;
+  }
+}
