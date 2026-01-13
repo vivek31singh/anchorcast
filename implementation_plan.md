@@ -59,8 +59,8 @@
 
 **Phase 6: Feature Pages Implementation**
 1. [x] **Boats (`/boats`)**: Implement Grid/Table toggle, filtering logic, and BoatCard/TableRow components.
-2. [ ] **Posts (`/posts`)**: Implement tab switching (Published/Failed), PostPreview cards, and detail view `[id]/page.tsx`.
-3. [ ] **Templates (`/templates`)**: Build the TemplateEditor with textarea helpers and HashtagChips logic.
+2. [x] **Posts (`/posts`)**: Implement tab switching (Published/Failed), PostPreview cards, and PostStatusBadge/PublishRetry components.
+3. [x] **Templates (`/templates`)**: Build the TemplateEditor with textarea helpers and HashtagChips logic.
 4. [ ] **Social (`/social`)**: Create the connection status card with "Reconnect" simulation.
 5. [ ] **Settings (`/settings`)**: Build form validation visuals and the "Danger Zone" reset modal.
 
