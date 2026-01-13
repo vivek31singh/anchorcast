@@ -4,7 +4,8 @@
     "Initialize Next.js 14 project structure with TypeScript and Tailwind CSS configuration, including `package.json`, `tsconfig.json`, `next.config.js`, `tailwind.config.ts`, `postcss.config.js`, and the basic `app/` directory (root layout and page).",
     "Implement the Data Layer by creating `app/lib/types.ts` to define interfaces (User, Stats, Boat, Post, Template, Social) and `app/lib/dummy.ts` to populate these interfaces with static mock data.",
     "Implement Phase 3: Core UI Components. Create `app/styles/glass.css` for utility classes, `app/components/bento/GlassPane.tsx` for the primary wrapper, and `app/components/ui/Button.tsx`, `app/components/ui/Toggle.tsx`, and `app/components/ui/Tooltip.tsx` for interactive primitives.",
-    "Implement the remaining Phase 3 components: `app/components/bento/StatCard.tsx` and `app/components/bento/QuickAction.tsx`. These components should utilize the `GlassPane` wrapper and `Button` component to display statistics (with icons, labels, and trend indicators) and primary action buttons (e.g., \"Sync Now\", \"Add Boat\") respectively."
+    "Implement the remaining Phase 3 components: `app/components/bento/StatCard.tsx` and `app/components/bento/QuickAction.tsx`. These components should utilize the `GlassPane` wrapper and `Button` component to display statistics (with icons, labels, and trend indicators) and primary action buttons (e.g., \"Sync Now\", \"Add Boat\") respectively.",
+    "Refactor `app/layout.tsx` to comply with Next.js 14 App Router standards (including Inter font and metadata) and create the `app/components/layout/PageShell.tsx` component. Additionally, implement the `Nav`, `MobileDrawer`, and `UserDropdown` components within the layout directory to establish the main application shell."
   ],
-  "last_commit": "fix: replace lucide-react with heroicons v2 and fix double-click in QuickAction component"
+  "last_commit": "feat: implement Phase 4 layout components with PageShell, Nav, MobileDrawer, and UserDropdown"
 }
