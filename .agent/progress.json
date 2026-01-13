@@ -1,0 +1,7 @@
+{
+  "repository": "vivek31singh/anchorcast",
+  "completed_features": [
+    "Initialize Next.js 14 project structure with TypeScript and Tailwind CSS configuration, including `package.json`, `tsconfig.json`, `next.config.js`, `tailwind.config.ts`, `postcss.config.js`, and the basic `app/` directory (root layout and page)."
+  ],
+  "last_commit": "feat: initialize Next.js 14 project with TypeScript and Tailwind CSS configuration"
+}
