@@ -43,7 +43,8 @@ app/
 │  └─ icons/
 ├─ lib/
 │  ├─ dummy.ts
-│  └─ types.ts
+│  ├─ types.ts
+│  └─ utils.ts
 ├─ styles/
 │  └─ glass.css
 └─ README.md
@@ -60,7 +61,7 @@ app/
 - **TypeScript**: Strict mode enabled. Explicit return types for functions.
 - **React**: Functional components with Hooks. No Class components.
 - **Imports**: Absolute imports using `@/` alias if configured, otherwise relative imports. Group imports: External > Internal > Styles.
-- **Styling**: Tailwind utility classes preferred over CSS modules. Use `clsx` and `tailwind-merge` for conditional classes.
+- **Styling**: Tailwind utility classes preferred over CSS modules. Use the `cn` helper function from `app/lib/utils.ts` (utilizing `clsx` and `tailwind-merge`) for conditional class merging.
 - **Components**: `'use client'` directive at the very top for any component using hooks or event handlers.
 
 ## Testing Strategy
