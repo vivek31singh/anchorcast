@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { GlassPane } from '@/components/bento/GlassPane';
 import { Button } from '@/components/ui/Button';
 import { HashtagChips } from './HashtagChips';
-import { Template } from '@/lib/dummy';
+import { Template } from '@/lib/types';
 import { InformationCircleIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 interface TemplateEditorProps {

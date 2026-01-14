@@ -4,12 +4,12 @@ import React from 'react';
 import { GlassPane } from './GlassPane';
 import { Button } from '../ui/Button';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type ButtonVariant = 'primary' | 'ghost' | 'danger';
 
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface QuickActionProps {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.ReactNode;
   label: string;
   description: string;
   buttonText: string;
@@ -19,7 +19,7 @@ interface QuickActionProps {
 }
 
 export const QuickAction: React.FC<QuickActionProps> = ({
-  icon: Icon,
+  icon,
   label,
   description,
   buttonText,
@@ -30,7 +30,7 @@ export const QuickAction: React.FC<QuickActionProps> = ({
   return (
     <GlassPane className="flex items-center gap-4">
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/30">
-        <Icon className="h-6 w-6 text-blue-600" />
+        {icon && <div className="h-6 w-6 text-blue-600">{icon}</div>}
       </div>
       <div className="flex flex-1 flex-col">
         <h3 className="font-semibold text-gray-900">{label}</h3>

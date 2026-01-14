@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { GlassPane } from '../bento/GlassPane';
-import { 
+import {
   ChartBarIcon,
-  BoatIcon,
+  HomeIcon,
   DocumentTextIcon,
   PencilSquareIcon,
   ShareIcon,
@@ -19,7 +19,7 @@ interface NavProps {
 
 const navItems = [
   { href: '/', label: 'Dashboard', icon: ChartBarIcon },
-  { href: '/boats', label: 'Boats', icon: BoatIcon },
+  { href: '/boats', label: 'Boats', icon: HomeIcon },
   { href: '/posts', label: 'Posts', icon: DocumentTextIcon },
   { href: '/templates', label: 'Templates', icon: PencilSquareIcon },
   { href: '/social', label: 'Social', icon: ShareIcon },

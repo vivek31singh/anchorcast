@@ -197,3 +197,11 @@ export const DUMMY_SOCIAL: Social = {
   igUserName: '@anchorcastyachts',
   tokenExpiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
 };
+
+// Export aliases for easier importing
+export const posts = DUMMY_POSTS;
+export const user = DUMMY_USER;
+export const stats = DUMMY_STATS;
+export const boats = DUMMY_BOATS;
+export const templates = DUMMY_TEMPLATES;
+export const social = DUMMY_SOCIAL;

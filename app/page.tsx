@@ -1,3 +1,5 @@
+'use client';
+
 import { StatCard } from './components/bento/StatCard';
 import { QuickAction } from './components/bento/QuickAction';
 import { UpcomingPosts } from './components/bento/UpcomingPosts';
@@ -30,58 +32,60 @@ export default function DashboardPage() {
           {/* Stat Cards - Top Row */}
           <div className="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-3">
             <StatCard
-              title="Total Boats"
+              label="Total Boats"
               value={stats.totalBoats}
               icon={<ChartBarIcon />}
-              trend="+12%"
-              trendPositive={true}
+              trend="up"
+              trendValue="+12%"
             />
           </div>
           <div className="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-3">
             <StatCard
-              title="Published Posts"
+              label="Published Posts"
               value={stats.publishedPosts}
               icon={<DocumentCheckIcon />}
-              trend="+8%"
-              trendPositive={true}
+              trend="up"
+              trendValue="+8%"
             />
           </div>
           <div className="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-3">
             <StatCard
-              title="Failed Posts"
+              label="Failed Posts"
               value={stats.failedPosts}
               icon={<ExclamationTriangleIcon />}
-              trend="-2%"
-              trendPositive={true}
+              trend="down"
+              trendValue="-2%"
             />
           </div>
           <div className="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-3">
             <StatCard
-              title="Next Sync"
+              label="Next Sync"
               value={new Date(stats.nextSync).toLocaleDateString('en-US', {
                 month: 'short',
                 day: 'numeric',
               })}
               icon={<ClockIcon />}
-              trend="2h left"
-              trendPositive={false}
+              trend="neutral"
+              trendValue="2h left"
             />
           </div>
 
           {/* Quick Actions - Middle Section */}
           <div className="col-span-1 md:col-span-1 lg:col-span-2 xl:col-span-2">
             <QuickAction
-              title="Sync Now"
+              label="Sync Now"
               description="Update inventory"
               icon={<ArrowPathIcon />}
+              buttonText="Sync"
               onClick={() => console.log('Sync clicked')}
             />
           </div>
           <div className="col-span-1 md:col-span-1 lg:col-span-2 xl:col-span-2">
             <QuickAction
-              title="Add Boat"
+              label="Add Boat"
               description="New listing"
               icon={<PlusIcon />}
+              buttonText="Add"
               onClick={() => console.log('Add boat clicked')}
             />
           </div>

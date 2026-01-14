@@ -1,7 +1,7 @@
 'use client';
 import { GlassPane } from '../bento/GlassPane';
 import { Post } from '@/lib/types';
-import { PostStatusBadge } from './PostStatusBadge';
+import PostStatusBadge from './PostStatusBadge';
 import { PublishRetry } from './PublishRetry';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 
@@ -23,7 +23,7 @@ export const PostPreview = ({ post, boatTitle, isRetrying, onRetry }: PostPrevie
             <span className="rounded-lg bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-700">
               {platformName}
             </span>
-            <PostStatusBadge status={post.status} />
+            <PostStatusBadge status={post.status} errorMsg={post.errorMsg} />
           </div>
           <h4 className="mb-1 text-lg font-semibold text-gray-800">{boatTitle}</h4>
           <div className="flex items-center gap-1 text-sm text-gray-500">
@@ -32,7 +32,7 @@ export const PostPreview = ({ post, boatTitle, isRetrying, onRetry }: PostPrevie
           </div>
         </div>
         {post.status === 'failed' && (
-          <PublishRetry post={post} isRetrying={isRetrying} onRetry={onRetry} />
+          <PublishRetry post={post} isRetrying={isRetrying} onRetry={() => onRetry(post.id)} />
         )}
       </div>
     </GlassPane>

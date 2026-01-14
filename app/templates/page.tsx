@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { GlassPane } from '@/components/bento/GlassPane';
 import { Button } from '@/components/ui/Button';
 import { TemplateEditor } from '@/components/templates/TemplateEditor';
-import { DUMMY_TEMPLATES, Template } from '@/lib/dummy';
+import { DUMMY_TEMPLATES } from '@/lib/dummy';
+import { Template } from '@/lib/types';
 import { DocumentTextIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function TemplatesPage() {
@@ -92,7 +93,7 @@ export default function TemplatesPage() {
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-white/5 rounded-xl p-4">
             <h4 className="text-white font-medium mb-2">Use Placeholders</h4>
-            <p className="text-white/60 text-sm">Dynamic placeholders like {boat_title}, {price}, and {year} auto-populate with boat data.</p>
+            <p className="text-white/60 text-sm">Dynamic placeholders like {'{boat_title}'}, {'{price}'}, and {'{year}'} auto-populate with boat data.</p>
           </div>
           <div className="bg-white/5 rounded-xl p-4">
             <h4 className="text-white font-medium mb-2">Hashtag Strategy</h4>
