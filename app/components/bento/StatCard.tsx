@@ -1,39 +1,61 @@
+'use client';
+
 import { GlassPane } from './GlassPane';
-import { LucideIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { 
+  TrendingUpIcon, 
+  TrendingDownIcon,
+  ArrowUpIcon,
+  ArrowDownIcon
+} from '@heroicons/react/24/outline';
 
 interface StatCardProps {
   label: string;
   value: string | number;
-  icon: LucideIcon;
-  trend?: {
-    value: number;
-    isPositive: boolean;
-  };
-  className?: string;
+  trend?: 'up' | 'down' | 'neutral';
+  trendValue?: string;
+  icon?: React.ReactNode;
 }
 
-export const StatCard = ({ label, value, icon: Icon, trend, className }: StatCardProps) => {
+export const StatCard: React.FC<StatCardProps> = ({
+  label,
+  value,
+  trend = 'neutral',
+  trendValue,
+  icon
+}) => {
+  const getTrendIcon = () => {
+    switch (trend) {
+      case 'up':
+        return <ArrowUpIcon className="w-4 h-4 text-emerald-500" />;
+      case 'down':
+        return <ArrowDownIcon className="w-4 h-4 text-red-500" />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <GlassPane className={cn('hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 ease-in-out', className)}>
+    <GlassPane className="p-6 hover:scale-105 transition-all duration-300">
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-gray-500">{label}</p>
-          <p className="mt-2 text-3xl font-bold text-gray-800">{value}</p>
-          {trend && (
-            <p
-              className={cn(
-                'mt-2 text-sm font-medium',
-                trend.isPositive ? 'text-emerald-600' : 'text-red-600'
-              )}
-            >
-              {trend.isPositive ? '+' : '-'}{trend.value}%
-            </p>
+          <p className="text-sm font-medium text-white/70 mb-1">{label}</p>
+          <p className="text-3xl font-bold text-white">{value}</p>
+          {trend !== 'neutral' && trendValue && (
+            <div className="flex items-center gap-1 mt-2">
+              {getTrendIcon()}
+              <span className={`text-sm font-medium ${
+                trend === 'up' ? 'text-emerald-500' : 'text-red-500'
+              }`}>
+                {trendValue}
+              </span>
+            </div>
           )}
         </div>
-        <div className="rounded-xl bg-gradient-to-br from-blue-500/20 to-emerald-500/20 p-3">
-          <Icon className="h-6 w-6 text-blue-600" />
-        </div>
+        {icon && (
+          <div className="p-3 bg-white/10 rounded-xl">
+            {icon}
+          </div>
+        )}
       </div>
     </GlassPane>
   );
