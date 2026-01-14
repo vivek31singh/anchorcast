@@ -1,56 +1,39 @@
-'use client';
-
-import React from 'react';
 import { GlassPane } from './GlassPane';
-import { ArrowTrendingUpIcon, ArrowTrendingDownIcon } from '@heroicons/react/24/outline';
-
-type TrendDirection = 'up' | 'down' | 'neutral';
+import { LucideIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface StatCardProps {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   label: string;
   value: string | number;
+  icon: LucideIcon;
   trend?: {
-    value: string;
-    direction: TrendDirection;
+    value: number;
+    isPositive: boolean;
   };
+  className?: string;
 }
 
-export const StatCard: React.FC<StatCardProps> = ({
-  icon: Icon,
-  label,
-  value,
-  trend,
-}) => {
+export const StatCard = ({ label, value, icon: Icon, trend, className }: StatCardProps) => {
   return (
-    <GlassPane className="flex items-center gap-4">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/30">
-        <Icon className="h-6 w-6 text-blue-600" />
-      </div>
-      <div className="flex-1">
-        <p className="text-sm font-medium text-gray-600">{label}</p>
-        <p className="text-2xl font-bold text-gray-900">{value}</p>
-        {trend && (
-          <div className="flex items-center gap-1 text-sm">
-            {trend.direction === 'up' && (
-              <ArrowTrendingUpIcon className="h-4 w-4 text-emerald-600" />
-            )}
-            {trend.direction === 'down' && (
-              <ArrowTrendingDownIcon className="h-4 w-4 text-red-500" />
-            )}
-            <span
-              className={
-                trend.direction === 'up'
-                  ? 'text-emerald-600'
-                  : trend.direction === 'down'
-                  ? 'text-red-500'
-                  : 'text-gray-500'
-              }
+    <GlassPane className={cn('hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 ease-in-out', className)}>
+      <div className="flex items-start justify-between">
+        <div className="flex-1">
+          <p className="text-sm font-medium text-gray-500">{label}</p>
+          <p className="mt-2 text-3xl font-bold text-gray-800">{value}</p>
+          {trend && (
+            <p
+              className={cn(
+                'mt-2 text-sm font-medium',
+                trend.isPositive ? 'text-emerald-600' : 'text-red-600'
+              )}
             >
-              {trend.value}
-            </span>
-          </div>
-        )}
+              {trend.isPositive ? '+' : '-'}{trend.value}%
+            </p>
+          )}
+        </div>
+        <div className="rounded-xl bg-gradient-to-br from-blue-500/20 to-emerald-500/20 p-3">
+          <Icon className="h-6 w-6 text-blue-600" />
+        </div>
       </div>
     </GlassPane>
   );
